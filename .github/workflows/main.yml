@@ -4,7 +4,7 @@ on:
    pull_request:
     branches: 
       - "*"
-   # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+   # A workflow run is made up of one or more jobs that can run sequentially or in parallel   
 jobs:
   sonarcloud:
     name: Build (Sonar Cloud)
@@ -14,20 +14,16 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '15'
     - name: build project
       run: |
         projectname=`git show --format="" --name-only | xargs dirname | sort | uniq`
+        echo "projectname=$projectname" >> $GITHUB_ENV
         echo $projectname
         curl -v -X POST https://3e59557e76bb1e832212a641cb88b09db5f69413@sonarcloud.io/api/projects/create -d "name=$projectname&project=$projectname&organization=harishsingh2707"
     - name: pass the variable value
       env:
          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      run: |
-        projectname=`git show --format="" --name-only | xargs dirname | sort | uniq`
-        echo "projectname=$projectname" >> $GITHUB_ENV
+        
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       with:
