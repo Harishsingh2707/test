@@ -14,6 +14,9 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '15'
     - name: build project
       run: |
         projectname=`git show --format="" --name-only | xargs dirname | sort | uniq`
