@@ -21,7 +21,8 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         role-to-assume: arn:aws:iam::979739814166:role/github-actions
         role-session-name: MySessionName
-        aws-region: ap-south-1  
+        aws-region: ap-south-1 
+         
     - name: install npm
       run: 'sudo apt update -y && sudo apt install nodejs npm -y'
     - name: build project
