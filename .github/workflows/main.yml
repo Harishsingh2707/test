@@ -19,8 +19,8 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        # role-to-assume: arn:aws:iam::979739814166:role/github-actions
-        # role-session-name: MySessionName
+        role-to-assume: arn:aws:iam::979739814166:role/github-actions
+        role-session-name: MySessionName
         aws-region: ap-south-1 
 
     - name: install npm
