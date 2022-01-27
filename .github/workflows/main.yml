@@ -27,7 +27,7 @@ jobs:
         projectname=`git show --format="" --name-only | xargs dirname | sort | uniq`
         echo "projectname=$projectname" >> $GITHUB_ENV
         echo $projectname
-        aws s3 ls
+        aws configure
         
     
      #   curl -v -X POST https://3e59557e76bb1e832212a641cb88b09db5f69413@sonarcloud.io/api/projects/create -d "name=$projectname&project=$projectname&organization=harishsingh2707"   
