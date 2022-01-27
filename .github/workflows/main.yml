@@ -14,11 +14,18 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
+        
     - name: build project
       run: |
         projectname=`git show --format="" --name-only | xargs dirname | sort | uniq`
         echo "projectname=$projectname" >> $GITHUB_ENV
         echo $projectname
+    - name: Configure AWS credentials from Test account
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::111111111111:role/my-github-actions-role-test
+        aws-region: us-east-1
+
      #   curl -v -X POST https://3e59557e76bb1e832212a641cb88b09db5f69413@sonarcloud.io/api/projects/create -d "name=$projectname&project=$projectname&organization=harishsingh2707"   
   #  - name: Analyze with SonarCloud
    #   uses: sonarsource/sonarcloud-github-action@master
