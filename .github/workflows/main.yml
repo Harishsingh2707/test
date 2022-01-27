@@ -19,6 +19,8 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        role-to-assume: arn:aws:iam::979739814166:role/github-actions
+        role-session-name: MySessionName
         aws-region: ap-south-1  
     - name: install npm
       run: 'sudo apt update -y && sudo apt install nodejs npm -y'
@@ -27,7 +29,7 @@ jobs:
         projectname=`git show --format="" --name-only | xargs dirname | sort | uniq`
         echo "projectname=$projectname" >> $GITHUB_ENV
         echo $projectname
-        aws configure
+        aws s3 ls
         
     
      #   curl -v -X POST https://3e59557e76bb1e832212a641cb88b09db5f69413@sonarcloud.io/api/projects/create -d "name=$projectname&project=$projectname&organization=harishsingh2707"   
