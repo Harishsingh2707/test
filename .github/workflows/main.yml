@@ -17,8 +17,8 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: AKIA6IHILFELE3DMJZGO
-        aws-secret-access-key: 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
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1  
     - name: install npm
       run: 'sudo apt update -y && sudo apt install nodejs npm -y'
