@@ -26,13 +26,15 @@ jobs:
     #   run: 'sudo apt update -y && sudo apt install nodejs npm -y'
     - name: build project
       run: |
-        projectname=`git show --format="" --name-only | xargs filename | sort | uniq`
+        projectname=`git show --format="" --name-only | xargs dirname | sort | uniq`
         echo "projectname=$projectname" >> $GITHUB_ENV
         echo $projectname
         DEBUG_GIT_COMMIT=$(git log --pretty=format:'%h' -n 1)
         DEBUG_GIT_PREVIOUS_COMMIT=$(git log --first-parent origin/master --pretty=format:'%h' -n 1 --skip 1)
         echo $DEBUG_GIT_COMMIT
         echo $DEBUG_GIT_PREVIOUS_COMMIT
+        DEBUG_FOLDERS=$(git diff --name-only ${DEBUG_GIT_COMMIT} ${DEBUG_GIT_PREVIOUS_COMMIT} | sort -u | cut -d '/' -f 1,2 | uniq)
+        echo $DEBUG_FOLDERS
         # aws s3 ls
         # aws s3 cp harish/singh/demo.html s3://harish-test2701/text.env
         
