@@ -36,7 +36,7 @@ jobs:
         DEBUG_FOLDERS=$(git diff --name-only ${DEBUG_GIT_COMMIT} ${DEBUG_GIT_PREVIOUS_COMMIT} | sort -u | cut -d '/' -f 1,2 | uniq)
         echo $DEBUG_FOLDERS
         aws s3 ls
-        aws s3 cp $projectname s3://harish-test2701
+        aws s3 cp $projectname s3://harish-test2701/
         
     
      #   curl -v -X POST https://3e59557e76bb1e832212a641cb88b09db5f69413@sonarcloud.io/api/projects/create -d "name=$projectname&project=$projectname&organization=harishsingh2707"   
