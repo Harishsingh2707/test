@@ -26,7 +26,7 @@ jobs:
     #   run: 'sudo apt update -y && sudo apt install nodejs npm -y'
     - name: build project
       run: |
-        projectname=`git show --format="" --name-only | xargs dirname | sort | uniq`
+        projectname=`git show --format="" --name-only | xargs filename | sort | uniq`
         echo "projectname=$projectname" >> $GITHUB_ENV
         echo $projectname
         DEBUG_GIT_COMMIT=$(git log --pretty=format:'%h' -n 1)
